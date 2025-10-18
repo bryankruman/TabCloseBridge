@@ -1,0 +1,22 @@
+﻿{
+  "manifest_version": 3,
+  "name": "TabCloseBridge",
+  "description": "Exposes a single-line function requestTabClose() that lets allowlisted sites close their own tab.",
+  "version": "1.1.0",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
