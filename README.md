@@ -42,7 +42,3 @@ Notes
 - The function name is requestTabClose for a clean, single-line call.
 - If you prefer a different name, it can be changed in content.js (both the injected function name and any references) while keeping the rest the same.
 - This implementation keeps the allowlist static via allowlist.json for simplicity. An options page or storage-based editor can be added later if needed.
-
-FAQ
-- Wouldn't the best approach be to use the Chrome API to close the tab?
-  Yes. That is exactly what this extension does. Tabs are closed via chrome.tabs.remove from the background service worker. The page itself cannot call the Chrome API directly, nor can it reliably use window.close() (which is restricted to windows opened by script and causes the console warning). The content script bridges a page call to the background, which validates the host against the allowlist and then invokes chrome.tabs.remove on the current tab.
