@@ -66,7 +66,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (isHostAllowed(tabUrl)) {
       chrome.tabs.remove(tabId, () => {
         if (chrome.runtime.lastError) {
-          console.warn('TabCloseBridge: failed to close tab:', chrome.runtime.lastError);
+          console.warn('TabCloseBridge: FAILED to close tab:', chrome.runtime.lastError);
         }
       });
     } else {
