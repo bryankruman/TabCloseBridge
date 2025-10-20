@@ -91,3 +91,14 @@ chrome.storage.onChanged.addListener((changes, area) => {
 chrome.runtime.onInstalled.addListener(() => {
   loadAllowlist();
 });
+
+// Open the settings (options) page when the extension icon is clicked
+// This uses the options_ui defined in manifest.json
+chrome.action.onClicked.addListener(() => {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    // Fallback for very old Chromium versions
+    chrome.tabs.create({ url: chrome.runtime.getURL('options.html') });
+  }
+});
